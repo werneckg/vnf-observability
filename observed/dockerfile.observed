@@ -1,0 +1,16 @@
+FROM debian:12.8
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt update \
+    && apt upgrade -y \
+    && apt install -y \
+    tzdata \
+    sysstat \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV TZ=America/Sao_Paulo
+
+RUN echo 'ENABLED="true"' > /etc/default/sysstat \
+    && systemctl enable sysstat
+

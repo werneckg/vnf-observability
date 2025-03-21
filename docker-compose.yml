@@ -1,0 +1,61 @@
+services:
+    observed:
+        container_name: observed
+        build:
+            context: ./observed
+            dockerfile: dockerfile.observed
+        deploy:
+            resources:
+                reservations:
+                    cpus: '2'
+                    memory: 1g
+                limits:
+                    cpus: '2'
+                    memory: 1g
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        volumes:
+            - ./volumes:/volumes
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.2
+                  
+    observer:
+        container_name: observer
+        build:
+            context: ./observer
+            dockerfile: dockerfile.observer
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        volumes:
+            - ./volumes:/volumes
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.3
+
+    vnf-client:
+        container_name: vnf-client
+        build:
+            context: ./vnf-client
+            dockerfile: dockerfile.vnf-client
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        volumes:
+            - ./volumes:/volumes
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.4
+
+networks:
+    net-10.9.0.0:
+        name: net-10.9.0.0
+        ipam:
+            config:
+                - subnet: 10.9.0.0/24
+
