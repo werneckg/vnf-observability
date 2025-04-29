@@ -32,7 +32,8 @@
 
 <p align="justify"> To start the VNF application, run <i>docker exec -itd observed ./volumes/app-observed @arguments</i>. To start the VNF client and the observer applications, respectively, run <i>docker exec -itd vnf-client ./volumes/app-vnf-client @arguments</i> and <i>docker exec -it observer ./volumes/app-observer @arguments</i>.</p>
 
-<p align="justify"> Ps.: The file containing the messages used by the VNF client must be in the volumes folder.</p>
+<p align="justify"> Ps1.: The file containing the messages used by the VNF client must be in the volumes folder.</p>
+<p align="justify"> Ps2.: The file run-tests.sh contains all automated commands used in the experiments.</p>
 
 <p align="justify"> After receiving the observation information, the observer records it in files, into volumes folder, according to the observability mode. In the case provided here, the files are obs-results-passive.dat and obs-results-active.dat. They contain the state information extracted from the VNF by the sysstat tool and are organized into the following columns: CPU consumption (%), RAM consumption (%), rxpck/s (packet receiving rate), txpck/s (packet transmitting rate), rxkB/s (data receiving rate), txkB/s (data transmitting rate), rxerr/s (bad packets received rate), txerr/s (errors in transmitted packets rate), coll/s (packet collisions rate), window (current window of attack), and Number of attacks (identified attacks since last observation).</p>
 
